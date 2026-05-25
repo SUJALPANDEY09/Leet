@@ -14,10 +14,10 @@ public class Solution {
         ListNode temp = head;
         HashMap<ListNode,Integer> hash = new HashMap<>();
         while(temp != null){
-            hash.put(temp,hash.getOrDefault(temp,0)+1);
-            if(hash.get(temp) == 2){
+            if(hash.containsKey(temp)){
                 return true;
             }
+            hash.put(temp,1);
             temp = temp.next;
         } 
         return false;
