@@ -14,30 +14,15 @@
  * }
  */
 class Solution {
+    int count =0;
+    private void helper(TreeNode root){
+        if(root == null) return ;
+        count++;
+        helper(root.left);
+        helper(root.right);
+    } 
     public int countNodes(TreeNode root) {
-        if(root == null) return 0;
-
-        int left = lefth(root);
-        int right = righth(root);
-
-        if(left == right){ return ((2<<(left))-1);}
-        else{
-            return countNodes(root.left) + countNodes(root.right) +1;}
-    }
-    public int lefth(TreeNode root){
-        int count = 0;
-        while(root.left != null){
-            count++;
-            root =root.left;
-        }
-        return count;
-    }
-    public int righth(TreeNode root){
-        int count = 0;
-        while(root.right != null){
-            count++;
-            root =root.right;
-        }
+        helper(root);
         return count;
     }
 }
