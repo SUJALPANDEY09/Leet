@@ -1,20 +1,20 @@
 class Solution {
-    private void help(int index , int[] nums,List<Integer>list, Set<List<Integer>> ans){
-        if(index == nums.length){
-            ans.add(new ArrayList<>(list));
-            return;
-        }
+    private void help(int index , int[] nums,List<Integer>list, List<List<Integer>> ans){
+        ans.add(new ArrayList<>(list));
         
-        list.add(nums[index]);
-        help(index+1,nums,list,ans);
-        list.remove(list.size() -1);
-        help(index+1,nums,list,ans);
+        for(int i = index ; i<nums.length ; i++){
+            if(i!= index && nums[i] == nums[i-1]) continue;
+
+            list.add(nums[i]);
+            help(i+1,nums,list,ans);
+            list.remove(list.size() -1);
+        }
     }
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
-        Set<List<Integer>> ans = new HashSet<>();
+        List<List<Integer>> ans = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
         help(0,nums,list,ans);
-        return (new ArrayList<>(ans));
+        return ans;
     }
 }
