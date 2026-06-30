@@ -8,12 +8,11 @@ class Solution {
         }
 
         for(int i=0;i<nums.length;i++){
-            r = sum - nums[i];
-            sum -= nums[i];
+            r = sum - l;
+            l += nums[i];
             if(r == l){
                 return i;
             }
-            l += nums[i]; 
         }
         return -1;
     }
